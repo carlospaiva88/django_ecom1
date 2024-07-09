@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, redirect
 from .forms import ChangePasswordForm, SignUpForm, UpdateUserForm, UserInfoForm
+from payment.forms import ShippingForm
+from payment.models import ShippingAdress
 from .models import Category, Product, Profile
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -28,23 +30,35 @@ def search(request):
 
 def update_info(request):
     if request.user.is_authenticated:
+        # Get Current User
         try:
             current_user = Profile.objects.get(user__id=request.user.id)
         except Profile.DoesNotExist:
             current_user = Profile.objects.create(user=request.user)
         
+        # Get Current User's Shipping Info
+        try:
+            shipping_user = ShippingAdress.objects.get(user__id=request.user.id)
+        except ShippingAdress.DoesNotExist:
+            shipping_user = ShippingAdress.objects.create(user=request.user)
+        
+        # Get original User Form
         form = UserInfoForm(request.POST or None, instance=current_user)
-
-        if form.is_valid():
+        # Get User's Shipping Form
+        shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
+        
+        if form.is_valid() and shipping_form.is_valid():
+            # Save original form
             form.save()
+            # Save shipping form
+            shipping_form.save()
 
-            login(request, current_user.user)
-            messages.success(request, 'Your Info Has Been Updated')
+            messages.success(request, "Your Info Has Been Updated!!")
             return redirect('home')
         
-        return render(request, 'update_info.html', {'form': form})
+        return render(request, "update_info.html", {'form': form, 'shipping_form': shipping_form})
     else:
-        messages.success(request, 'You must be logged in to access that page')
+        messages.success(request, "You Must Be Logged In To Access That Page!!")
         return redirect('home')
 
 def update_password(request):
