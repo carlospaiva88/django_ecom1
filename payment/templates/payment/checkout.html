@@ -43,7 +43,6 @@
                             <br/><br/>
                             <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
                         </strong>
-                        
                         </br></br></br>
                     </div>
                 </div>
@@ -53,14 +52,15 @@
                         Shipping Info
                     </div>
                     <div class="card-body">
+                        <form action="{% url 'billing_info' %}" method="POST">
+                            {% csrf_token %}
                         {{ shipping_form.as_p }}
                     </div>
-                    </div>
-                </br>
-                    <a href="" class="btn btn-secondary">Continue to billing</a>
-               
+                </div>
+                        </br>
+                        <button type="submit" class="btn btn-secondary">Continue to billing</button>
+                        </form>      
             </div>
-       
         </div>
     </div>
 </br></br></br>
