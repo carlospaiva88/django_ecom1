@@ -19,11 +19,12 @@ SECRET_KEY = "django-insecure-43ybmpv+cj6*0ra-8j1mhaoy3s6s0(3#iuhh0c$8x(%dp%4a4#
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'djangoecom-production-fb99.up.railway.app', 
+    'djangoecom-production-d721.up.railway.app', 
+    '127.0.0.1'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://djangoecom-production-fb99.up.railway.app'
+    'https://djangoecom-production-d721.up.railway.app'
 ]
 # Application definition
 
