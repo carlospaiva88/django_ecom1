@@ -19,7 +19,7 @@ SECRET_KEY = "django-insecure-43ybmpv+cj6*0ra-8j1mhaoy3s6s0(3#iuhh0c$8x(%dp%4a4#
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'djangoecom-production-d77f.up.railway.app', 
+    'djangoecom1-production.up.railway.app', 
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
@@ -27,22 +27,8 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://djangoecom-production-d77f.up.railway.app'
+    'https://djangoecom1-production.up.railway.app'
 ]
-
-# Logging para depuração
-import logging
-
-logger = logging.getLogger(__name__)
-logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
-logger.info(f"CSRF_TRUSTED_ORIGINS: {CSRF_TRUSTED_ORIGINS}")
-
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
-print("CSRF_TRUSTED_ORIGINS:", CSRF_TRUSTED_ORIGINS)
-# Application definition
-
-print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
-print("CSRF_TRUSTED_ORIGINS:", CSRF_TRUSTED_ORIGINS)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
