@@ -22,13 +22,17 @@ ALLOWED_HOSTS = [
     'djangoecom-production-d77f.up.railway.app', 
     '127.0.0.1',
     'localhost',
-    '0.0.0.0' 
+    '0.0.0.0',
+    '*'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://djangoecom-production-d77f.up.railway.app'
 ]
 # Application definition
+
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("CSRF_TRUSTED_ORIGINS:", CSRF_TRUSTED_ORIGINS)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
