@@ -29,6 +29,16 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://djangoecom-production-d77f.up.railway.app'
 ]
+
+# Logging para depuração
+import logging
+
+logger = logging.getLogger(__name__)
+logger.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
+logger.info(f"CSRF_TRUSTED_ORIGINS: {CSRF_TRUSTED_ORIGINS}")
+
+print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
+print("CSRF_TRUSTED_ORIGINS:", CSRF_TRUSTED_ORIGINS)
 # Application definition
 
 print("ALLOWED_HOSTS:", ALLOWED_HOSTS)
