@@ -19,13 +19,14 @@ SECRET_KEY = "django-insecure-43ybmpv+cj6*0ra-8j1mhaoy3s6s0(3#iuhh0c$8x(%dp%4a4#
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'djangoecom-production-d721.up.railway.app', 
+    'djangoecom-production-d77f.up.railway.app', 
     '127.0.0.1',
     'localhost',
+    '0.0.0.0' 
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://djangoecom-production-d721.up.railway.app'
+    'https://djangoecom-production-d77f.up.railway.app'
 ]
 # Application definition
 
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    
 ]
 
 ROOT_URLCONF = "djecom.urls"
