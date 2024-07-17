@@ -20,8 +20,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'djangoecom1-production.up.railway.app', 
-    'https://goyaznatural.com'
-    'goyaznatural.com'
+    'https://goyaznatural.com',
+    'goyaznatural.com',
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
