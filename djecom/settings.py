@@ -20,14 +20,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'djangoecom1-production.up.railway.app', 
+    'https://goyaznatural.com'
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
-    '*'
+    
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://djangoecom1-production.up.railway.app'
+    'https://djangoecom1-production.up.railway.app',
+    'https://goyaznatural.com',
 ]
 
 INSTALLED_APPS = [
