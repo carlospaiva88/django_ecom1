@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     
 ]
-
+## 
 ROOT_URLCONF = "djecom.urls"
 
 TEMPLATES = [
