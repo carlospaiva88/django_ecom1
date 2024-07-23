@@ -1,0 +1,4 @@
+.carousel-img {
+    border-image: round;
+    object-fit: contain; /* Para garantir que a imagem mantenha a proporção e preencha a área designada */
+}
