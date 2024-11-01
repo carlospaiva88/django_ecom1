@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from store.models import Product, Profile
 import datetime
-
 # Import some Paypal stuff
 from django.urls import reverse
 from paypal.standard.forms import PayPalPaymentsForm
@@ -201,7 +200,7 @@ def billing_info(request):
         # Get the host
         host = request.get_host()
 
-        # Create Paypal form and stuff
+        # Create Paypal form dictionary
         paypal_dict = {
             'business': settings.PAYPAL_RECEIVER_EMAIL,
             'amount': totals,
