@@ -1,16 +1,17 @@
 from pathlib import Path
 import os 
 from dotenv import load_dotenv
+import dj_database_url
+# Load our environmental variables
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Load our environmental variables
-from dotenv import load_dotenv
-load_dotenv()
 
-DB_PASSWORD_YO = os.environ.get('DB_PASSOWORD_YO')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -90,16 +91,8 @@ WSGI_APPLICATION = "djecom.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "goyaznaturaldb",
-        "USER": "holyhock",
-        "PASSWORD": "goyaznatural",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
-    }
+    "default": dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 
