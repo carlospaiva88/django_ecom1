@@ -135,6 +135,7 @@ def billing_info(request):
 		messages.success(request, "Access Denied")
 		return redirect('home')
 
+
 def process_order(request):
     if request.POST:
 

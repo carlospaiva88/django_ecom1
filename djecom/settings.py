@@ -94,12 +94,11 @@ WSGI_APPLICATION = "djecom.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': os.environ.get('DB_PASSWORD_YO'),
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '19693',
-        
+        "NAME": "goyaznaturaldb",
+        "USER": "holyhock",
+        "PASSWORD": "goyaznatural",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
