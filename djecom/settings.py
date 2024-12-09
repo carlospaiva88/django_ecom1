@@ -7,7 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Load our environmental variables
+from dotenv import load_dotenv
 load_dotenv()
+
+DB_PASSWORD_YO = os.environ.get('DB_PASSOWORD_YO')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -25,12 +28,15 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
+    'f593-2804-d55-48f8-c500-765e-dfc2-41a-48f7.ngrok-free.app',
+    'https://f593-2804-d55-48f8-c500-765e-dfc2-41a-48f7.ngrok-free.app' 
     
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://djangoecom1-production.up.railway.app',
     'https://goyaznatural.com',
+    'https://f593-2804-d55-48f8-c500-765e-dfc2-41a-48f7.ngrok-free.app'
 ]
 
 INSTALLED_APPS = [
