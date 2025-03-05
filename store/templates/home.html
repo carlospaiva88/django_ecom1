@@ -3,10 +3,9 @@
 
 {% block content %}
 
-
+        <!--
         <div class="container">
                 <h3 align="center">INSPIRE-SE</h3>
-                <!-- Carousel -->
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="1000">
@@ -29,71 +28,72 @@
                 </button>
             </div>
         </div>
-
-
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
-                    {% for product in products %}
-                        {% if product.is_sale %}
-                    <div class="col-6 mb-5">
-                        <div class="card h-100">
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem; ">
-                                Sale
-                            </div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.name }}</h5>
-                                    <!-- Product price-->
-                                    <strike>
-                                        ${{ product.price }}
-                                    </strike>
-                                    &nbsp;
-                                        ${{ product.sale_price }}
-                                    </br>
-                                    {{ product.description }}
-                                </br>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">View Product</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    {% else %}
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <!-- Product image-->
-                                <img class="card-img-top" src="{{product.image.url}}" alt="..." />
-                                <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{ product.name }}</h5>
-                                        <!-- Product price-->
-                                        ${{ product.price }}
-                                        &nbsp;
-                                    </br>
-                                        {{ product.description }}
-                                    </div>
-                                </div>
-                                <!-- Product actions-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">View Product</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
+        -->
+        
+        
+        <section class="py-5 bg-light">
+            <div class="container text-center">
+                <h1 class="fw-bold">Bem-vinda(o) a <span class="text-success">Goyaz Natural</span>! 🌿</h1>
+                <p class="lead text-muted mt-3">
+                    Aqui você encontra receitas vegetarianas e fitness deliciosas, nutritivas e fáceis de preparar.  
+                    Nossa missão é inspirar um estilo de vida mais saudável e sustentável, com pratos que combinam sabor e bem-estar.
+                </p>
+                <a href="#" class="btn btn-success btn-lg mt-3">Descubra Nossas Receitas 🍽️</a>
             </div>
         </section>
+        
+
+ <!-- Section Produtos-->
+<div class="container">
+    <h2 class="text-center">Produtos</h2>
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
+                {% for product in products %}
+                <div class="col mb-5">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 card-hover custom-card">
+                        <!-- Product image -->
+                        <img class="card-img-top rounded-top-4" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <!-- Product details -->
+                        <div class="card-body p-4 text-center">
+                            <h5 class="fw-bolder">{{ product.name }}</h5>
+                            <p class="text-muted">{{ product.description }}</p>
+                            {% if product.is_sale %}
+                                <p class="text-danger fw-bold">
+                                    <strike class="text-muted">${{ product.price }}</strike> ${{ product.sale_price }}
+                                </p>
+                            {% else %}
+                                <p class="fw-bold text-success">${{ product.price }}</p>
+                            {% endif %}
+                        </div>
+                        <!-- Product actions -->
+                        <div class="card-footer bg-transparent border-0 text-center pb-4">
+                            <a class="btn btn-success rounded-pill px-4" href="{% url 'product' product.id %}">
+                                Saiba Mais
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- CSS para estilização -->
+<style>
+    .card-hover {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+}
+</style>
+
 
         {% endblock %}

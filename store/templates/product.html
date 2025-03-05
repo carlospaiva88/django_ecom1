@@ -2,38 +2,84 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
-    <br/><br/><br/>
-    <div class="card {% if page == 'home' %}card-home{% else %}card-product{% endif %} mb-3">
-        <!-- Imagem Ajustada -->
-        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="..."
-            style="max-height: 250px; object-fit: cover;">
-        
-        <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.description }}</p>
-            {% if product.is_sale %}
-                <strike>${{ product.price }}</strike>
-                <span>${{ product.sale_price }}</span>
-            {% else %}
-                <span>${{ product.price }}</span>
-            {% endif %}
-            <br/><br/>
-            <div class="d-flex justify-content-between">
-                <select class="form-select form-select-sm w-50" id="qty-cart">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <button type="button" value="{{ product.id }}" class="btn btn-primary" id="add-cart">Add to cart</button>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card border-0 shadow-lg rounded-4 p-4">
+                <div class="row align-items-center">
+
+                    <!-- Imagem do Produto -->
+                    <div class="col-md-5 text-center">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-4" alt="{{ product.name }}" style="width: 400px; height: auto;">
+                    </div>
+
+                    <!-- Informações do Produto -->
+                    <div class="col-md-7">
+                        <h2 class="fw-bold text-dark">{{ product.name }}</h2>
+                        <p class="text-muted fs-5">
+                            🔥 <strong>Destaque-se com {{ product.name }}!</strong>  
+                            Este produto foi desenvolvido para oferecer **qualidade, desempenho e praticidade** no seu dia a dia.  
+                        </p>
+
+                        <!-- Benefícios -->
+                        <div class="bg-light p-3 rounded">
+                            <h5 class="fw-bold">✨ Benefícios que fazem a diferença:</h5>
+                            <ul class="list-unstyled">
+                                <li>✅ **Alta durabilidade e resistência**</li>
+                                <li>✅ **Design moderno e sofisticado**</li>
+                                <li>✅ **Melhora sua experiência e produtividade**</li>
+                            </ul>
+                        </div>
+
+                        <!-- Preço -->
+                        {% if product.is_sale %}
+                            <p class="text-danger fs-4 fw-bold mt-3">
+                                <strike class="text-muted">${{ product.price }}</strike> ${{ product.sale_price }}
+                            </p>
+                        {% else %}
+                            <p class="fs-4 fw-bold text-success mt-3">${{ product.price }}</p>
+                        {% endif %}
+
+                        <!-- Seleção de quantidade -->
+                        <div class="mb-3">
+                            <label for="qty-cart" class="form-label">Quantidade:</label>
+                            <select class="form-select w-auto d-inline" id="qty-cart">
+                                {% for i in quantity_options %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Botão Adicionar ao Carrinho -->
+                        <button type="button" value="{{ product.id }}" class="btn btn-success rounded-pill px-4 btn-lg shadow-sm" id="add-cart">
+                            Comprar
+                        </button>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<br/><br/><br/><br/><br/><br/>
+<!-- Estilos adicionais -->
+<style>
+    .card {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .btn-success {
+        transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Script para adicionar ao carrinho -->
 <script>   
     $(document).on('click', '#add-cart', function(e){
         e.preventDefault(); 
@@ -47,7 +93,6 @@
                 action: 'post'
             },
             success: function(json){
-                // Redirecionar para a página do carrinho após adicionar o produto
                 window.location.href = "{% url 'cart_summary' %}";
             },
             error: function(xhr, errmsg, err){

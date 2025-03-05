@@ -12,19 +12,27 @@ from django import forms
 from django.db.models import Q
 import json
 from cart.cart import Cart
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
+
 
 def search(request):
-    # Determine if they fill out the form
     if request.method == 'POST':
         searched = request.POST['searched']
-        # Query The Products Db Model
-        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
-        # Test for null
-        if not searched:
+        searched_products = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        
+        if not searched_products:
             messages.success(request, 'That Product Does not exist, Please try again!')
             return render(request, "search.html", {})
         else:
-            return render(request, "search.html", {'searched':searched})
+            return render(request, "search.html", {'searched': searched_products})
+    elif request.method == 'GET' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # This handles AJAX requests
+        query = request.GET.get('q', '')
+        products = Product.objects.filter(Q(name__icontains=query) | Q(description__icontains=query))
+        html = render_to_string('partial_search_results.html', {'results': products})
+        return JsonResponse({'html': html})
     else:
         return render(request, "search.html", {})
 
@@ -120,7 +128,8 @@ def category(request, foo):
 
 def product(request, pk):
     product = Product.objects.get(id=pk)
-    return render(request, 'product.html', {'product':product})
+    quantity_options = range(1, 6)  # Adiciona o intervalo de opções
+    return render(request, 'product.html', {'product': product, 'quantity_options': quantity_options})
 
 def home(request):
     products = Product.objects.all()

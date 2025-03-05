@@ -4,7 +4,7 @@
 
 .custom-navbar .navbar-brand,
 .custom-navbar .nav-link {
-    color: white; /* Cor do texto */
+    color: rgba(255, 222, 222, 0.648); /* Cor do texto */
 }
 
 .custom-navbar .nav-link:hover {
